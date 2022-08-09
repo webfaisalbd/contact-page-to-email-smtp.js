@@ -1,22 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
 </head>
+
 <body>
     <div class="container">
-        <form>
+        <form onsubmit="sendEmail(); reset(); return false;">
             <h3>Get In Touch</h3>
             <input type="text" id="name" placeholder="Your Name" required>
             <input type="email" id="email" placeholder="Your Email" required>
             <input type="number" id="phone" placeholder="Your Phone" required>
+            <input type="text" id="subject" placeholder="Your Subject" required>
             <textarea id="message" rows="4" placeholder="How can we help you?"></textarea>
             <button type="submit">Send</button>
         </form>
-     </div>
+    </div>
+
+    <script>
+        (function () {
+            emailjs.init("user_Id");
+        })();
+    </script>
+    <script>
+        function sendEmail() {
+            let fullName = document.getElementById("name").value;
+            let userEmail = document.getElementById("email").value;
+            let userPhone = document.getElementById("phone").value;
+            let userMessage = document.getElementById("message").value;
+            let userSubject = document.getElementById("subject").value;
+
+            var contactParams = {
+                from_name: fullName,
+                from_email: userEmail,
+                from_phone: userPhone,
+                from_message: userMessage,
+                from_subject: userSubject,
+            };
+
+            emailjs.send('service_Id', 'template_Id', contactParams).then(function (res) { })
+        }
+    </script>
 </body>
+
 </html>
