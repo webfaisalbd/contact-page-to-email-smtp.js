@@ -22,3 +22,9 @@ form {
     max-width: 600px;
     border-radius: 10px;
 }
+
+form h3 {
+    color: #555;
+    font-weight: 800;
+    margin-bottom: 20px;
+}
